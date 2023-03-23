@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <title>MEDIPLUS</title>
+        <link rel="stylesheet" href="../static/css/citas.css">
+        <link rel="stylesheet" href="../static/css/stylebtsrp.css">
+        <link rel="icon" href="https://w7.pngwing.com/pngs/671/580/png-transparent-physician-medicine-health-care-clinic-surgery-sick-people-logo-pharmaceutical-drug-silhouette.png">
+    </head>
+    <body>
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="logo">
+                    <header id="main-header">
+                        <a href="index.html" id="logo-header">
+                            <span class="site-name">MEDIPLUS</span>  
+                            <span id="site-desc">Al Servicio de la Salud</span>
+                        </a>
+                    <nav>
+                        <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li> <a href="acercade.html">Sobre Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="login.html">Log In</a></li>
+                        <li><a href="registro.html">Sign Up</a></li>
+                        <li button><a href="citas.html">Citas</a></li>
+                        <li><p>Bienvenido,{{session['username'] }}</p></li>
+                        
+                        </ul>
+                    </nav>
+                </header>
+                </div>
+            </div>
+                <main> <section>    
+                    <form action="/citas" method="POST" autocomplete="off">
+                        <input type="text" name="nombre" id="nombre"
+                        placeholder="Nombre">
+                        <input type="text" name="primer_apellido" id="primer_apellido"
+                        placeholder="Primer Apellido">
+                        <input type="text" name="segundo_apellido" id="segundo_apellido"
+                        placeholder="Segundo Apellido">
+                        <input type="text" name="edad" id="edad"
+                        placeholder="Edad">
+                        <input type="text" name="correo" id="correo"
+                        placeholder="Correo">
+                        <input type="text" name="tipo_sangre" id="tipo_sangre"
+                        placeholder="Tipo de sangre">
+                        <input type="text" name="numero_telefonico" id="numero_telefonico"
+                        placeholder="Numero telefonico">
+                        <input type="text" name="direccion" id="direccion"
+                        placeholder="Direccion">
+                        <button class="boton"
+                        type="submit">Añadir</button>
+                    </form>
+                </section>
+                <section class="section">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Primer Apellido</th>
+                                        <th>Segundo Apellido</th>
+                                        <th>Edad</th>
+                                        <th>Correo</th>
+                                        <th>Tipo de Sangre</th>
+                                        <th>Numero Telefonico</th>
+                                        <th>Direccion</th>
+                                        <th>Editar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cita in citas %}
+                                    <tr>
+                                        <td>{{cita[1]}}</td>
+                                        <td>{{cita[2]}}</td>
+                                        <td>{{cita[3]}}</td>
+                                        <td>{{cita[4]}}</td>
+                                        <td>{{cita[5]}}</td>
+                                        <td>{{cita[6]}}</td>
+                                        <td>{{cita[7]}}</td>
+                                        <td>{{cita[8]}}</td>
+                                        <td>
+                                            <a href="{{url_for('editarcita', id=cita[0])}}" class="button is-info">Editar</a>
+                                        </td>
+                                        <td>
+                                            <form action="{{url_for('eliminar_paciente')}}" method="POST">
+                                                <input type="hidden" name="id" value="{{cita[0]}}">
+                                                <button class="button is-danger">Eliminar</button>
+                                            </form>
+                                        </td>
+                                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>   

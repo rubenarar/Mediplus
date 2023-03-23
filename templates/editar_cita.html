@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <title>MEDIPLUS</title>
+        <link rel="stylesheet" href="../static/css/login.css">
+        <link rel="icon" href="https://w7.pngwing.com/pngs/671/580/png-transparent-physician-medicine-health-care-clinic-surgery-sick-people-logo-pharmaceutical-drug-silhouette.png">
+    </head>
+    <body>
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="logo">
+                    <header id="main-header">
+                        <a href="index.html" id="logo-header">
+                            <span class="site-name">MEDIPLUS</span>  
+                            
+                        </a>
+                    <nav>
+                        <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li> <a href="acercade.html">Sobre Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="login.html">Log In</a></li>
+                        <li><a href="registro.html">Sign Up</a></li>
+                        <li><p>Bienvenido,{{session['username'] }}</p></li>
+                        </ul>
+                    </nav>
+                </header>
+                </div>
+            </div>
+            
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="is-size-3">Editar Paciente</h3>
+            <form action="/actualizar_paciente" method="post">
+                {# Enviar el id en un campo oculto #}
+                <input type="hidden" name="id" value="{{cita[0]}}">
+                <label for="nombre">Nombre:</label>
+                <input value="{{cita[1]}}" required type="text" class="input" placeholder="Nombre" name="nombre" id="nombre">
+                
+                <label for="primer_apellido">Primer Apellido:</label>
+                <input value="{{cita[2]}}" required type="text" class="input" placeholder="Primer Apellido" name="primer_apellido" id="primer_apellido">
+                
+                <label for="segundo_apellido">Segundo Apellido:</label>
+                <input value="{{cita[3]}}" required type="text" class="input" placeholder="Segundo Apellido" name="segundo_apellido" id="segundo_apellido">
+                
+                <label for="edad">Edad:</label>
+                <input value="{{cita[4]}}" required type="number" class="input" placeholder="Edad" name="edad" id="edad">
+                
+                <label for="email">Correo Electronico:</label>
+                <input value="{{cita[5]}}" required type="text" class="input" placeholder="Correo" name="correo" id="correo">
+               
+                <label for="tipo_sangre">Tipo de Sangre</label>
+                <input value="{{cita[6]}}" required type="text" class="input" placeholder="Tipo de Sangre" name="tipo_sangre" id="tipo_sangre">
+                
+                <label for="numero_telefonico">Numero de Telefono</label>
+                <input value="{{cita[7]}}" required type="number" class="input" placeholder="Numero Telefonico" name="numero_telefonico" id="numero_telefonico">
+
+                <label for="direccion">Direccion</label>
+                <input value="{{cita[8]}}" required type="text" class="input" placeholder="Direccion" name="direccion" id="direccion">
+
+                <button type="submit" class="button is-success mt-2">Guardar</button>
+                <a href="{{url_for('citas')}}" class="button is-primary mt-2">Volver</a>
+            </form>
+        </div>
+    </div>
+    <button class="convertir botondelete">Convertir a PDF</button>
+</section>
