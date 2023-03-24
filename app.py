@@ -66,8 +66,8 @@ def eliminar_paciente():
     citasRedirect.eliminar_paciente(request.form["id"])
     return redirect("/citas.html")
 
-@app.route('/guardar_citas', methods=['POST'])
-def guardar_citas():
+@app.route('/guardar_paciente', methods=['POST'])
+def guardar_paciente():
     Nombre = request.form["nombre"]
     Primer_Apellido = request.form["primer_apellido"]
     Segundo_Apellido = request.form["segundo_apellido"]

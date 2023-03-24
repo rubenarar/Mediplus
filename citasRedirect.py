@@ -8,7 +8,7 @@ def insertar_paciente(Nombre, Primer_Apellido, Segundo_Apellido, Edad, Tipo_de_S
                        (Nombre, Primer_Apellido, Segundo_Apellido, Edad, Tipo_de_Sangre, Numero_Telefonico, Correo, Direccion))
     conexion.commit()
     conexion.close()
-
+    
 
 def obtener_Pacientes():
     conexion = Connection()
