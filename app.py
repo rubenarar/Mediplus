@@ -47,7 +47,7 @@ def editar_cita(id):
     cita = citasRedirect.obtener_paciente_por_id(id)
     return render_template("editar_cita.html", cita=cita)
 
-@app.route("/editar_cita", methods=["POST"])
+@app.route("/actualizar_paciente", methods=["POST"])
 def actualizar_paciente():
     Id = request.form ["id"]
     Nombre = request.form["nombre"]
