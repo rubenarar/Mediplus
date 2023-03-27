@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <head>
+        <title>MEDIPLUS</title>
+        <link rel="stylesheet" href="../static/css/citas.css">
+        <link rel="stylesheet" href="../static/css/stylebtsrp.css">
+        <link rel="icon" href="https://w7.pngwing.com/pngs/671/580/png-transparent-physician-medicine-health-care-clinic-surgery-sick-people-logo-pharmaceutical-drug-silhouette.png">
+    </head>
+    <body>
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="logo">
+                    <header id="main-header">
+                        <a href="index.html" id="logo-header">
+                            <span class="site-name">MEDIPLUS</span>  
+                            <span id="site-desc">Al Servicio de la Salud</span>
+                        </a>
+                    <nav>
+                        <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li> <a href="acercade.html">Sobre Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="login.html">Log In</a></li>
+                        <li><a href="registro.html">Sign Up</a></li>
+                        <li button><a href="citas.html">Citas</a></li>
+                        <li><p>Bienvenido,{{session['username'] }}</p></li>
+                        
+                        </ul>
+                    </nav>
+                </header>
+                </div>
+            </div>
+    <main>
+        <h1>{{ mensaje }}</h1>
+        <form action="/agendar_citas" method="POST" autocomplete="off">
+            <section>
+            <label for="nombre">Nombre del paciente</label>
+            <input type="text" name="nombre" id="nombre">
+            <label for="numero">Numero de celular</label>
+            <input type="text" name="numero" id="numero">
+            <label for="correo">Correo</label>
+            <input type="email" name="correo" id="correo">
+            <label for="sintomas">Sintomas</label>
+            <input type="text" name="sintomas" id="sintomas">
+            </section>
+            <section>
+                <label for="fecha">Fecha de la cita</label>
+                <input type="date" name="fecha" id="fecha">
+                <label for="departamento">Departamento</label>
+                <input type="text" name="departamento"  id="departamento">
+                <label for="genero">Genero</label>
+                <input type="text" name="genero" id="genero" list="generos">
+                <label for="hora">Hora de la cita</label>
+                <input type="time" name="hora" id="hora">
+            </section>
+            <datalist id="generos">
+                <option value="Mujer">
+                <option value="Hombre">
+                <option value="No binario">
+                <option value="Prefiero no decirlo">
+            </datalist>
+            <button type="submit">Agendar cita</button>
+        </form>
+    </main>
+</body>
+</html>

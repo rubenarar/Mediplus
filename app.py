@@ -1,4 +1,5 @@
 from flask import Flask, render_template,redirect,request,session
+from flask_mail import Mail, Message
 import mysql.connector
 import citasRedirect
 Connection = mysql.connector.connect(host='localhost',
@@ -102,6 +103,49 @@ def loginuser():
                 session['username']= record[0]  
                 return redirect("/index.html") 
     return render_template('login.html', msg=msg)
+
+@app.route ('/agendar.html')
+def agendar():
+    return render_template ('agendar.html')
+
+# configuración de Flask-Mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'rubenoctaviorodriguezcano@gmail.com'
+app.config['MAIL_PASSWORD'] = 'qzgbacjowbngufse'
+app.config['MAIL_DEFAULT_SENDER'] = 'rubenoctaviorodriguezcano@gmail.com'
+
+mail = Mail(app)
+
+@app.route('/agendar_citas', methods=['POST'])
+def agendar_citas():
+    nombre = request.form['nombre']
+    numero = request.form['numero']
+    correo = request.form['correo']
+    sintomas = request.form['sintomas']
+    fecha = request.form['fecha']
+    departamento = request.form['departamento']
+    genero = request.form['genero']
+    hora = request.form['hora']
+    #mensaje
+    body = f"""\
+    TIENES UNA NUEVA CITA
+    Datos de la cita:
+    Nombre: {nombre}
+    Numero: {numero}
+    Correo: {correo}
+    Sintomas: {sintomas}
+    Fecha: {fecha}
+    Hora: {hora}
+    Departamento: {departamento}
+    Genero: {genero}
+    """
+    #SEND msg
+    msg = Message('Nueva Cita', recipients=[correo])
+    msg.body = body
+    mail.send(msg)
+    return render_template('agendar.html', mensaje='La cita se ha creado exitosamente')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)
